@@ -1,0 +1,1 @@
+console.log("Guten Tag from your service-worker.js file!");
