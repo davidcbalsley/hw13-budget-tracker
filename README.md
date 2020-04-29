@@ -10,7 +10,7 @@ This application provides a means to record financial transactions. It is design
 
 ### Functionality
 
-This application uses a service worker to maintain data and static file caches. It uses IndexedDB to record expenses and credit while offline.
+This application uses a service worker to maintain data and static file caches. It uses IndexedDB to record expenses and credits while offline.
 
 ### Concepts and techniques
 * IndexedDB
@@ -20,4 +20,5 @@ This application uses a service worker to maintain data and static file caches. 
 * service workers
 
 https://github.com/davidcbalsley/hw13-budget-tracker
+
 https://radiant-beyond-08581.herokuapp.com/
