@@ -43,7 +43,28 @@ self.addEventListener("activate", function(evt) {
 
 // Intercept network requests
 self.addEventListener('fetch', function(evt) {
-    // code to handle requests goes here
+    // Cache responses for requests for data
+    if (evt.request.url.includes("/api/")) {
+        evt.respondWith(
+          caches.open(DATA_CACHE_NAME).then(cache => {
+            return fetch(evt.request)
+              .then(response => {
+                // If the response was good, clone it and store it in the cache.
+                if (response.status === 200) {
+                  cache.put(evt.request.url, response.clone());
+                }
+    
+                return response;
+              })
+              .catch(err => {
+                // Network request failed, try to get it from the cache.
+                return cache.match(evt.request);
+              });
+          }).catch(err => console.log(err))
+        );
+    
+        return;
+    }
 
     // Serve static files from the cache. Proceed with a network request when the resource is not in the cache
     evt.respondWith(
