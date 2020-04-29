@@ -46,16 +46,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="index.js"></script>
-  
+  <script src="db.js"></script>
   <script>
-    // Request a database instance
-    const request = indexedDB.open("budgetDatabase", 1);
-  
-    // Log the result of requesting the database
-    request.onsuccess = event => {
-      console.log(request.result);
-    };
-
     // Register a service worker
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
