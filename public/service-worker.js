@@ -44,4 +44,13 @@ self.addEventListener("activate", function(evt) {
 // Intercept network requests
 self.addEventListener('fetch', function(evt) {
     // code to handle requests goes here
+
+    // Serve static files from the cache. Proceed with a network request when the resource is not in the cache
+    evt.respondWith(
+        caches.open(CACHE_NAME).then(cache => {
+          return cache.match(evt.request).then(response => {
+            return response || fetch(evt.request);
+          });
+        })
+      );
 });
